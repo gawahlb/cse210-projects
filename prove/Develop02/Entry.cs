@@ -10,7 +10,7 @@ public class Entry
 
     public void Display()
     {
-        Console.WriteLine($"{_date}");
+        Console.WriteLine($"Date: {_date}");
         Console.WriteLine($"{_prompt}");
         Console.WriteLine($"{_entry}");
     }

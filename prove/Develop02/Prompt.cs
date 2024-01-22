@@ -5,20 +5,19 @@ using System.Text.RegularExpressions;
 
 public class Prompt
 {
-    List<string> prompts = new List<string>();
-
+    private List<string> prompts = new List<string>()
+    {
+        "How have I seen the Lord's hand in my life today?",
+        "What is something I was able to accomplish today?",
+        "What is something I am grateful for today?",
+        "What was the most exciting part of my day?",
+        "What would I change about my day?"
+    };
+    private Random random = new Random();
 
     public string GetRandomPrompt()
     {
-        prompts.Add("How have I seen the Lord's hand in my life today?");
-        prompts.Add("What is something I was able to accomplish today?");
-        prompts.Add("What is something I am grateful for today?");
-        prompts.Add("What was the most exciting part of my day?");
-        prompts.Add("What would I change about my day?");
-        
-        var random = new Random();
-        int randomPrompt = random.Next(prompts.Count);
-        return prompts[randomPrompt];
-
+        int index = random.Next(prompts.Count);
+        return prompts[index];
     }
 }
