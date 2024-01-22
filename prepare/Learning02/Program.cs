@@ -24,6 +24,6 @@ class Program
         mine._jobs.Add(job2);
         mine._name = "Allison Rose";
     
-        mine.Display();
+        mine.Display();  
     }
 }
