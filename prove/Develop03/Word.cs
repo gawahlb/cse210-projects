@@ -12,20 +12,18 @@ public class Word
         _text = text;
         _isHidden = false;
 
-        StringBuilder hiddenWord = new();
-
-        for(int i=0; i<_text.Length; i+=1)
+        foreach (char letter in _text)
         {
-            hiddenWord.Insert(i,"_");
-        }
-
-        _hiddenWord = hiddenWord.ToString();
+            _hiddenWord += "_";
+        }        
+               
 
     }
 
     
     public void Hide()
     {   
+        _text = _hiddenWord;
         _isHidden = true;
     }
 
@@ -36,13 +34,12 @@ public class Word
         if(first == "_")
         {
             _isHidden = true;
-            return _isHidden;
         }
         else
         {
-            _isHidden = false;
-            return _isHidden;
+            _isHidden = false; 
         }
+        return _isHidden;
     }
     public string GetDisplayText()
     {

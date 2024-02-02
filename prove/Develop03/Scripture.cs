@@ -5,7 +5,7 @@ public class Scripture
 {
     char sep = ' ';
     private string randWord;
-    
+     
     public List<Word> _words = new();
     public Reference _reference;
 
@@ -15,7 +15,9 @@ public class Scripture
     {
         _reference = reference;
 
+        Console.WriteLine("Testing arrayWords");
         string[] arrayWords = text.Split(sep);
+        System.Console.WriteLine(arrayWords);
         foreach (string word in arrayWords)
         {
             Word wordObj = new Word(word);
@@ -29,43 +31,53 @@ public class Scripture
 
     public void HideRandomWords(int numberToHide)
     {
-        
-        List<int> indexList = new();
-        if(indexList.Count < numberToHide)
+        int index = random.Next(0,_words.Count);
+
+        int currentlyHidden = 0;
+
+        while (IsCompletelyHidden() == false 
+            && numberToHide != currentlyHidden)
         {
-            for(int i = 0; i < 5;)
+            if(_words[index].IsHidden() == true)
             {
-                int index = random.Next(numberToHide+1);
-
-                if(!indexList.Contains(index))
-                {
-                    Word randomWord = new Word (randWord);
-                    _words[index] = randomWord;
-                    i +=1 ;
-                    indexList.Add(index);
-                }
-
-  
+                
             }
+            else 
+            {
+                _words[index].Hide();
+                currentlyHidden += 1;
+            }
+            index = random.Next(0,_words.Count);
         }
-        else
-        {
-            CompletelyHidden = true;
-        }
-        
 
+        
+     
     }
 
     public string GetDisplayText()
     {
-        string newText = string.Join(" ", _words);
-        return newText;
+        string newText2 = "";
+        foreach(Word word in _words)
+        {
+            
+            newText2 += word.GetDisplayText() + " ";
+        }
+        //string newText = string.Join(" ", _words);
+        return newText2;
 
     }
 
     public bool IsCompletelyHidden()
     {
-        return CompletelyHidden;
+        foreach (Word word in _words)
+        {
+            if (word.IsHidden() == false)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
 
