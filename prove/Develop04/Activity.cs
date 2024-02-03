@@ -15,12 +15,13 @@ public class Activity
 
     public void DisplayStartingMessage(string startingMessage)
     {
-        Console.WriteLine($"{startingMessage}");
+        Console.WriteLine($"Welcome to the {startingMessage}.");
+
     }
 
     public void DisplayEndingMessage(string endingMessage)
     {
-        Console.WriteLine($"{endingMessage}");
+        Console.WriteLine($"Thank you for participating in the {endingMessage}!");
     }
 
     public void ShowSpinner(int seconds)
@@ -49,10 +50,11 @@ public class Activity
 
         while(start != future)
         {
-            Console.Write($"{counter}");
+            Console.Write($"{seconds}");
             Thread.Sleep(1000);
             Console.Write("\b \b");
             counter += 1;
+            seconds -= 1;
             start = start.AddSeconds(1);
         } 
     }
