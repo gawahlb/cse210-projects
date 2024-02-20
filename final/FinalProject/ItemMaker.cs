@@ -2,7 +2,7 @@ using System;
 
 public class ItemMaker : Maker
 {
-    protected string _containedIn;
+    private string _containedIn;
     public ItemMaker(string name, string description, bool isUsed, string containedIn) : base(name, description, isUsed)
     {
         _containedIn = containedIn;
