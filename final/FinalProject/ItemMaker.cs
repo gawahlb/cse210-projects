@@ -19,7 +19,7 @@ public class ItemMaker : Maker
 
     public override string GetRepresentation()
     {
-        return $"{_name}|{_description}|{_isUsed}|{_containedIn}";
+        return $"Item|{_name}|{_description}|{_isUsed}|{_containedIn}";
     }
 
     public override void Pack(string name)

@@ -150,9 +150,9 @@ public class Manager
                 string[] sections = bagName.Split('|');
 
 
-                if(parts[3] == sections[0])
+                if(parts[4] == sections[1])
                 {
-                    Console.WriteLine($"  {parts[0]}");
+                    Console.WriteLine($"          {parts[1]}");
                 }
             }
 
@@ -170,9 +170,18 @@ public class Manager
         foreach (string line in lines)
         {
             string[] parts = line.Split('|');
-            ItemMaker item = new(parts[1], parts[2], bool.Parse(parts[3]), parts[4]);
-            _items.Add(item);
+            if(parts[0] == "Item")
+            {
+                ItemMaker item = new(parts[1], parts[2], bool.Parse(parts[3]), parts[4]);
+                _items.Add(item);
+            }
+            else
+            {
+                BagMaker bag = new(parts[1], parts[2], bool.Parse(parts[3]));
+                _bags.Add(bag);
+            }
         }
+        Console.WriteLine("File loaded successfully!");
     }
 
     public void Save()
@@ -203,24 +212,26 @@ public class Manager
         if(choice == "1")
         {
             int itemsPacked = 0;
+            int itemNumber = 0;
             foreach(ItemMaker item in _items)
             {
                 if(item.IsUsed() == true)
                 {
                     itemsPacked += 1;
                 }
+                itemNumber += 1;
             }
             if(itemsPacked > 0)
             {
                 int option;
-                int counter = 1;
+                int counter = 0;
                 Console.WriteLine("Which item would you like to move?");
                 foreach (ItemMaker item in _items)
                 {
+                    counter += 1;
                     if(item.IsUsed() == true)
                     {
                         Console.WriteLine($"{counter}. {item.GetDetails()}");
-                        counter += 1;
                     }
                 }
                 option = int.Parse(Console.ReadLine());
@@ -236,12 +247,11 @@ public class Manager
 
                 string bagName = _bags[moveTo-1].GetRepresentation();
                 string[] parts = bagName.Split('|');
-
                 string itemName = _items[option-1].GetRepresentation();
                 string[] sections = itemName.Split('|');
 
-                _items[option-1].Pack(parts[0]);
-                _bags[moveTo-1].Pack(sections[0]);
+                _items[option-1].Pack(parts[1]);
+                _bags[moveTo-1].Pack(sections[1]);
                 Console.WriteLine("Item moved successfully!");
             }
             else
@@ -263,14 +273,14 @@ public class Manager
             if(itemsUnpacked > 0)
             {
                 int option;
-                int counter = 1;
+                int counter = 0;
                 Console.WriteLine("Which item would you like to move?");
                 foreach (ItemMaker item in _items)
                 {
+                    counter += 1;
                     if(item.IsUsed() == false)
                     {
                         Console.WriteLine($"{counter}. {item.GetDetails()}");
-                        counter += 1;
                     }
                 }
                 option = int.Parse(Console.ReadLine());
@@ -290,8 +300,8 @@ public class Manager
                 string itemName = _items[option-1].GetRepresentation();
                 string[] sections = itemName.Split('|');
 
-                _items[option-1].Pack(parts[0]);
-                _bags[moveTo-1].Pack(sections[0]);
+                _items[option-1].Pack(parts[1]);
+                _bags[moveTo-1].Pack(sections[1]);
                 Console.WriteLine("Item moved successfully!");
             }
             else

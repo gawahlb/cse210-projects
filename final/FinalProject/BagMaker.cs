@@ -13,7 +13,7 @@ public class BagMaker : Maker
 
     public override string GetRepresentation()
     {
-        return $"{_name}|{_description}|{_isUsed}";
+        return $"Bag|{_name}|{_description}|{_isUsed}";
     }
 
     public override void Pack(string name)

@@ -1,0 +1,3 @@
+Item|shirt|red|True|Bag
+Item|pants|blue|True|Bag
+Bag|backpack|red|True
